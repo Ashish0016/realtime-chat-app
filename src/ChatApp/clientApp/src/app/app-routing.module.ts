@@ -5,12 +5,12 @@ import { ChatAppComponent } from './components/chat-app/chat-app.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'chat-app',
-    pathMatch: 'full'
+    loadChildren: () => import('./components/authentication/authentication.module')
+      .then(m => m.AuthenticationModule)
   },
   {
-    component: ChatAppComponent,
-    path: 'chat-app'
+    path: 'chat-app',
+    component: ChatAppComponent
   }
 ];
 
