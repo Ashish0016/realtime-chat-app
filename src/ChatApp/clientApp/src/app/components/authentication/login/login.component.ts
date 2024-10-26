@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -10,7 +11,9 @@ export class LoginComponent implements OnInit {
 
   public loginForm!: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder,
+    private http: HttpClient
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = this._formBuilder.group({
@@ -20,6 +23,14 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    
+    const httpRequestBody = {
+      email: this.loginForm.controls['email'].value,
+      password: this.loginForm.controls['password'].value
+    }
+
+    this.http.post('api/account/login', httpRequestBody)
+      .subscribe((res) => {
+        console.log(res);
+      })
   }
 }
