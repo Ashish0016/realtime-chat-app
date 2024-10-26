@@ -1,6 +1,7 @@
 using ChatApp.Constants;
 using ChatApp.Extensions;
 using ChatApp.SignalR;
+using Core.CoreExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddMediatR();
 builder.Services.AddSignalR();
 builder.Services.AddApiCorsPolicy();
+builder.Services.CoreExtensions(builder.Configuration);
 
 var app = builder.Build();
 
