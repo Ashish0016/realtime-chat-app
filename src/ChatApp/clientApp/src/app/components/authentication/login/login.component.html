@@ -1,0 +1,52 @@
+<div class="flex flex-col items-center h-screen justify-center bg-gray-50">
+    <!-- Container Box -->
+    <div class="w-full max-w-sm bg-white p-8 rounded-lg shadow-lg">
+        <!-- Logo Section -->
+        <div class="flex justify-center mb-6">
+            <img src="./../../../assets/chatcoin-chat-logo.png" alt="Logo" class="h-20 w-20">
+        </div>
+
+        <!-- Heading -->
+        <div class="font-medium text-2xl text-center mb-4">
+            Login
+        </div>
+
+        <!-- Form -->
+        <form [formGroup]="loginForm" (ngSubmit)="login()" class="flex flex-col space-y-4">
+            <div>
+                <label for="email" class="block mb-1">Email</label>
+                <input formControlName="email"
+                    class="w-full border rounded-md shadow-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    type="text" placeholder="chat@gmail.com"
+                    [ngClass]="{ 'border-red-500': loginForm.get('email')?.invalid && loginForm.get('email')?.touched }">
+                <div *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.touched"
+                    class="text-red-500 text-sm">
+                    Email is required.
+                </div>
+                <div *ngIf="loginForm.get('email')?.errors?.['email'] && loginForm.get('email')?.touched"
+                    class="text-red-500 text-sm">
+                    Enter a valid email.
+                </div>
+            </div>
+
+            <div>
+                <label for="email" class="block mb-1">Password</label>
+                <input formControlName="password"
+                    class="w-full border rounded-md shadow-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    type="password" placeholder="Chat@123"
+                    [ngClass]="{ 'border-red-500': loginForm.get('password')?.invalid && loginForm.get('password')?.touched }">
+                <div *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched"
+                    class="text-red-500 text-sm">
+                    Password is required.
+                </div>
+            </div>
+
+            <div>
+                <button type="submit"
+                    class="w-full bg-blue-600 text-white py-2 rounded-md shadow hover:bg-blue-700 transition">
+                    Login
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

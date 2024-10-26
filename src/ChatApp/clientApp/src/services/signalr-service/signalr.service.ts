@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

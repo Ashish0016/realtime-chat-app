@@ -8,6 +8,7 @@ import { ApiInterceptor } from 'src/core/Interceptor/api.interceptor';
 import { ChatAppComponent } from './components/chat-app/chat-app.component';
 import { SignalrService } from 'src/services/signalr-service/signalr.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthenticationModule } from './components/authentication/authentication.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AuthenticationModule
   ],
   providers: [
     SignalrService,
