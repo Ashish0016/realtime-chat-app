@@ -26,7 +26,7 @@ namespace DataAccess.Extensions
                     option.Password.RequireDigit = true;
                     option.Password.RequireUppercase = true;
                     option.Password.RequireLowercase = true;
-                    option.Password.RequiredLength = 10;
+                    option.Password.RequiredLength = 8;
                     option.Password.RequireNonAlphanumeric = false;
                 })
                 .AddRoles<IdentityRole>()
