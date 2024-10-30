@@ -1,4 +1,5 @@
 ﻿using Core.MappingConfigurations;
+using Core.Services.AuthService;
 using Core.Services.UserService;
 using DataAccess.Extensions;
 using Microsoft.Extensions.Configuration;
@@ -15,7 +16,9 @@ namespace Core.CoreExtensions
                 .AddDataAccessExtension(configuration)
                 .AddAutoMapper(typeof(UserMapperConfigurations).Assembly);
 
-            services.AddTransient<IUserService, UserService>();
+            services
+                .AddTransient<IUserService, UserService>()
+                .AddTransient<IAuthService, AuthService>();
 
             return services;
         }

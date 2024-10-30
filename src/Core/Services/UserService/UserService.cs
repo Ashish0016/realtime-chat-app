@@ -14,7 +14,6 @@ namespace Core.Services.UserService
             {
                 FirstName = userModel.FirstName,
                 LastName = userModel.LastName,
-                PasswordHash = userModel.Password,
                 IsActive = true,
                 CreatedDate = DateTime.UtcNow,
                 UpdatedDate = DateTime.UtcNow,
@@ -26,8 +25,13 @@ namespace Core.Services.UserService
                 PhoneNumber = userModel.PhoneNumber
             };
 
-            await _userManager.CreateAsync(user);
-            await _context.SaveChangesAsync(cancellationToken);
+            IdentityResult identityResult = await _userManager.CreateAsync(user);
+
+            if (identityResult.Succeeded)
+            {
+                await _userManager.AddPasswordAsync(user, userModel.Password);
+                await _context.SaveChangesAsync(cancellationToken);
+            }
 
             return;
         }

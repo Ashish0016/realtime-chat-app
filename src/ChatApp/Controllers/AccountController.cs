@@ -1,5 +1,6 @@
 ﻿using Core.Feature.AccountFeature.UserLogin;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChatApp.Controllers
@@ -15,6 +16,7 @@ namespace ChatApp.Controllers
         }
 
         [HttpPost("login")]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(
             [FromBody] UserLoginModel model)
         {
