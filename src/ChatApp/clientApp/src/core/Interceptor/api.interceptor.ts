@@ -3,23 +3,52 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpErrorResponse,
+  HttpStatusCode
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, EMPTY, finalize, Observable, share } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
 
   private apiBaseUrl = environment.apiBaseUrl;
+  private pendingRequests: Map<string, Observable<HttpEvent<any>>> = new Map();
 
-  constructor() {}
+  constructor(private toastr: ToastrService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const apiRequest = request.clone({
       url: `${this.apiBaseUrl}/${request.url}`
     });
 
-    return next.handle(apiRequest);
+    const requestUrl = apiRequest.url;
+
+    if (this.pendingRequests.has(requestUrl)) {
+      return this.pendingRequests.get(requestUrl)!;
+    }
+
+    const requestObservable = next.handle(apiRequest)
+      .pipe(
+        share(),
+        catchError((exception: HttpErrorResponse) => this.handleCustomHttpException(exception)),
+        finalize(() => this.pendingRequests.delete(requestUrl))
+      );
+
+    this.pendingRequests.set(requestUrl, requestObservable);
+
+    return requestObservable;
+  }
+
+  handleCustomHttpException(exception: HttpErrorResponse) {
+    let errorMessage: string = exception?.error?.message
+
+    if (errorMessage) {
+      this.toastr.error(errorMessage);
+    }
+
+    return EMPTY;
   }
 }

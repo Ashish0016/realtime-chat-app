@@ -46,7 +46,7 @@ namespace Core.Services.AuthService
 
         private async Task<User> GeUserByCredential(UserLoginModel userLoginModel)
         {
-            User user = await _userManager.FindByEmailAsync(userLoginModel.Email) ?? new User();
+            User? user = await _userManager.FindByEmailAsync(userLoginModel.Email ?? string.Empty);
 
             if (user is null)
             {

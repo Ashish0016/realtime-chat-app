@@ -9,6 +9,8 @@ import { ChatAppComponent } from './components/chat-app/chat-app.component';
 import { SignalrService } from 'src/services/signalr-service/signalr.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationModule } from './components/authentication/authentication.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,15 @@ import { AuthenticationModule } from './components/authentication/authentication
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AuthenticationModule
+    AuthenticationModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(
+      {
+        timeOut: 3000,  // Duration for which the toast should appear
+        positionClass: 'toast-top-right',  // Position of the toast
+        preventDuplicates: true,  // Prevents duplicate toasts
+      }
+    )
   ],
   providers: [
     SignalrService,
