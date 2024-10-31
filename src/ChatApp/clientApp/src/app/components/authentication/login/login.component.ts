@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ export class LoginComponent implements OnInit {
   public loginForm!: FormGroup;
 
   constructor(private _formBuilder: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private toaster: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -31,6 +33,7 @@ export class LoginComponent implements OnInit {
     this.http.post('api/account/login', httpRequestBody)
       .subscribe((res) => {
         console.log(res);
+        this.toaster.success("User login successfull!");
       })
   }
 }
