@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { SharedService } from 'src/services/shared-service/shared.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder,
     private http: HttpClient,
-    private toaster: ToastrService
+    private sharedService: SharedService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -31,9 +33,9 @@ export class LoginComponent implements OnInit {
     }
 
     this.http.post('api/account/login', httpRequestBody)
-      .subscribe((res) => {
-        console.log(res);
-        this.toaster.success("User login successfull!");
+      .subscribe((res: any) => {
+        this.sharedService.setToken(res.token);
+        this.router.navigate(['chat']);
       })
   }
 }
