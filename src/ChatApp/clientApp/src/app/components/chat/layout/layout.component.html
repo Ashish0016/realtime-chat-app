@@ -1,1 +1,15 @@
-<p>layout works!</p>
+<div class="h-screen flex flex-col">
+    <!-- Header section -->
+    <section class="sticky top-0 w-full">
+        <app-header></app-header>
+    </section>
+
+    <div class="flex flex-1 overflow-hidden">
+        <aside class="w-1/5 bg-slate-50 text-white overflow-y-auto h-full">
+            <app-side-bar></app-side-bar>
+        </aside>
+        <main class="flex-1 bg-gray-100 overflow-y-auto h-full">
+            <app-messaging></app-messaging>
+        </main>
+    </div>
+</div>
