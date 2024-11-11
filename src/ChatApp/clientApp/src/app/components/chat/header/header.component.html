@@ -1,1 +1,29 @@
-<p>header works!</p>
+
+<nav class="px-20 bg-slate-50 shadow-lg">
+    <div class="flex flex-row justify-between items-center p-2">
+        <!-- Logo -->
+        <div class="flex flex-row text-center items-center space-x-2 font-medium">
+            <img class="h-12 w-12" src="../../../../assets/chatcoin-chat-logo.png" alt="">
+            <div>Chat App</div>
+        </div>
+
+        <!-- Profile icon with name and dropdown -->
+        <div class="relative" (click)="openDropDown()">
+            <div class="flex flex-row items-center space-x-2 font-medium cursor-pointer">
+                <div class="font-medium">User Name</div>
+                <div>
+                    <i class="fas fa-user text-blue-500 text-xl"></i>
+                </div>
+            </div>
+
+            <!-- Dropdown menu with adjusted positioning -->
+            <div *ngIf="dropdownOpen" class="absolute right-0 mt-2 w-40 bg-white border rounded-lg shadow-lg">
+                <ul class="py-2">
+                    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Profile</li>
+                    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Settings</li>
+                    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-500 font-medium">Logout</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
