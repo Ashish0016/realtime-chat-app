@@ -1,4 +1,5 @@
 ﻿using Core.Feature.UserFeature.CreateUser;
+using Core.Feature.UserFeature.GetUsers;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,12 @@ namespace ChatApp.Controllers
         [HttpPost("createUser")]
         public async Task<IActionResult> CreateUser(
             [FromBody] CreateUserDto model)
+        {
+            return Ok(await _mediator.Send(model));
+        }
+        [HttpGet("getUsers")]
+        public async Task<IActionResult> GetUsers(
+            [FromRoute] GetUserModel model)
         {
             return Ok(await _mediator.Send(model));
         }

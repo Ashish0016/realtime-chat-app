@@ -3,7 +3,6 @@ using ChatApp.Constants;
 using ChatApp.Extensions;
 using ChatApp.SignalR;
 using Core.CoreExtensions;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 
