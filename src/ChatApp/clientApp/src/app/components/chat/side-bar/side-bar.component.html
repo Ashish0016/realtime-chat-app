@@ -1,18 +1,21 @@
 <div class="h-full flex flex-col w-full">
     <!-- Sidebar Header -->
-    <div class="bg-slate-50 p-3 sticky top-0 z-10 shadow-md">
-        <h2 class="text-lg font-semibold text-gray-800">Chats</h2>
+    <div class="p-3 sticky top-0 z-10 shadow-md">
+        <input class="w-full border-2 rounded-lg p-2 text-gray-800" type="text" placeholder="Search...">
     </div>
 
     <!-- Scrollable User List -->
     <div class="flex-1 overflow-y-auto bg-slate-50">
         <ul class="p-4 space-y-2">
-            <li class="flex gap-3 items-center shadow-sm p-3 rounded-md hover:bg-gray-200 transition-colors cursor-pointer" *ngFor="let user of users">
+            <li [ngClass]="{'active': user == selectedUser}"
+                (click)="setActiveUser(user)"
+                class="flex gap-3 items-center shadow-sm p-3 rounded-md hover:bg-gray-200 transition-colors cursor-pointer"
+                *ngFor="let user of users">
                 <!-- User Avatar Icon -->
                 <div class="text-xl text-blue-500">
                     <i [ngClass]="user.avatar"></i>
                 </div>
-                
+
                 <!-- User Name -->
                 <div class="flex-1 text-gray-700">
                     <p class="text-base font-medium truncate">{{ user.name }}</p>

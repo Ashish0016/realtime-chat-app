@@ -47,57 +47,17 @@ export class SideBarComponent implements OnInit {
       'avatar': 'fas fa-user text-blue-500 text-2xl',
       'name':'Suvarna Jadhav',
       'lastMessage':"hello!"
-    },
-    // {
-    //   'avatar': 'fas fa-user text-blue-500 text-2xl',
-    //   'name':'Dipak Pawale',
-    //   'lastMessage':"hello!"
-    // },
-    // {
-    //   'avatar': 'fas fa-user text-blue-500 text-2xl',
-    //   'name':'Dipak Pawale',
-    //   'lastMessage':"hello!"
-    // },
-    // {
-    //   'avatar': 'fas fa-user text-blue-500 text-2xl',
-    //   'name':'Ashish Naikwadi',
-    //   'lastMessage':"Are you there?"
-    // },
-    // {
-    //   'avatar': 'fas fa-user text-blue-500 text-2xl',
-    //   'name':'Ashish Naikwadi',
-    //   'lastMessage':"Are you there?"
-    // },
-    // {
-    //   'avatar': 'fas fa-user text-blue-500 text-2xl',
-    //   'name':'Ashish Naikwadi',
-    //   'lastMessage':"Are you there?"
-    // },
-    // {
-    //   'avatar': 'fas fa-user text-blue-500 text-2xl',
-    //   'name':'Ashish Naikwadi',
-    //   'lastMessage':"Are you there?"
-    // },
-    // {
-    //   'avatar': 'fas fa-user text-blue-500 text-2xl',
-    //   'name':'Ashish Naikwadi',
-    //   'lastMessage':"Are you there?"
-    // },
-    // {
-    //   'avatar': 'fas fa-user text-blue-500 text-2xl',
-    //   'name':'Ashish Naikwadi',
-    //   'lastMessage':"Are you there?"
-    // },
-    // {
-    //   'avatar': 'fas fa-user text-blue-500 text-2xl',
-    //   'name':'Ashish Naikwadi',
-    //   'lastMessage':"Are you there?"
-    // },
+    }
   ];
+
+  public selectedUser = this.users[0];
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  setActiveUser(user:any){
+    this.selectedUser = user;
+  }
 }

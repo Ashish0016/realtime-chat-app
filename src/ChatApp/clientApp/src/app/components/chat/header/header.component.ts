@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from 'src/services/shared-service/shared.service';
 
 @Component({
   selector: 'app-header',
@@ -7,14 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  public dropdownOpen:boolean = false;
+  public dropdownOpen: boolean = false;
 
-  constructor() { }
+  constructor(private sharedService: SharedService) { }
 
   ngOnInit(): void {
   }
 
-  openDropDown(){
+  openDropDown() {
     this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  logout(): void {
+    this.sharedService.logout();
   }
 }
