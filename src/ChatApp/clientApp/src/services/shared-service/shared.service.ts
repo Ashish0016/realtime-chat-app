@@ -11,6 +11,8 @@ export class SharedService {
 
   setToken = (token: string) => localStorage.setItem('token', token);
 
+  getToken = (): string | null => localStorage.getItem('token');
+
   isTokenExists(): boolean {
     let token: string | null = localStorage.getItem('token');
     return token ? true : false;

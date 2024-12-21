@@ -16,6 +16,8 @@ namespace Core.CoreExtensions
                 .AddDataAccessExtension(configuration)
                 .AddAutoMapper(typeof(UserMapperConfigurations).Assembly);
 
+            services.AddHttpContextAccessor();
+
             services
                 .AddTransient<IUserService, UserService>()
                 .AddTransient<IAuthService, AuthService>();
