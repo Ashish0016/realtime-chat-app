@@ -10,7 +10,7 @@ namespace Core.Feature.UserFeature.CreateUser
             RuleFor(prop => prop.FirstName).NotEmpty();
             RuleFor(prop => prop.LastName).NotEmpty();
             RuleFor(prop => prop.Password).NotEmpty();
-            RuleFor(prop => prop.ConfirmedPassword).NotEmpty();
+            RuleFor(prop => prop.ConfirmPassword).NotEmpty();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Core.Feature.UserFeature.CreateUser;
 using Core.Feature.UserFeature.GetUsers;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChatApp.Controllers
@@ -16,6 +17,7 @@ namespace ChatApp.Controllers
         }
 
         [HttpPost("createUser")]
+        [AllowAnonymous]
         public async Task<IActionResult> CreateUser(
             [FromBody] CreateUserDto model)
         {

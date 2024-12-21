@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 })
 export class SharedService {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router
+  ) { }
 
   setToken = (token: string) => localStorage.setItem('token', token);
 

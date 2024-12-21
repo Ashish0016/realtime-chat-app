@@ -30,6 +30,7 @@ namespace Core.Services.AuthService
                 new Claim(JwtRegisteredClaimNames.Sid, user.Id),
                 new Claim(JwtRegisteredClaimNames.Sub, user.UserName ?? string.Empty),
                 new Claim(JwtRegisteredClaimNames.Iss, "http://localhost:4200"),
+                new Claim(JwtRegisteredClaimNames.Name, $"{user.FirstName} {user.LastName}"),
             };
 
             JwtSecurityToken jwtToken = new JwtSecurityToken(
