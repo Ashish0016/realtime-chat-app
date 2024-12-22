@@ -29,9 +29,21 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
+
 app.UseRouting();
 
 app.UseHttpsRedirection();
+
+app.UseStaticFiles();
 
 app.UseCors(GlobalConstant.CorsPolicyName);
 
@@ -42,5 +54,7 @@ app.UseAuthorization();
 app.MapHub<ChatHub>("chat-hub");
 
 app.MapControllers();
+
+app.MapFallbackToFile("index.html");
 
 app.Run();
