@@ -23,9 +23,9 @@ namespace ChatApp.Controllers
         {
             return Ok(await _mediator.Send(model));
         }
-        [HttpGet("getUsers")]
+        [HttpGet("getLoggedInUserDetails")]
         public async Task<IActionResult> GetUsers(
-            [FromRoute] GetUserModel model)
+            [FromRoute] GetLoggedInUserModel model)
         {
             return Ok(await _mediator.Send(model));
         }

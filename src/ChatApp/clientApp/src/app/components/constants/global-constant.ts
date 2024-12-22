@@ -4,7 +4,7 @@ export enum MessageType {
 }
 
 export interface LoggedInUserDetails {
-    id: string,
-    Name: string,
-    email: string
+    id: string | null,
+    name: string | null,
+    email: string | null
 }

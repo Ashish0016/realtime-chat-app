@@ -10,6 +10,7 @@ import {
 import { catchError, EMPTY, finalize, Observable, share } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
+import { SharedService } from 'src/services/shared-service/shared.service';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
@@ -17,12 +18,24 @@ export class ApiInterceptor implements HttpInterceptor {
   private apiBaseUrl = environment.apiBaseUrl;
   private pendingRequests: Map<string, Observable<HttpEvent<any>>> = new Map();
 
-  constructor(private toastr: ToastrService) { }
+  constructor(private toastr: ToastrService,
+    private sharedService: SharedService
+  ) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const apiRequest = request.clone({
+    const bearerToken = this.sharedService.getToken();
+
+    let apiRequest = request.clone({
       url: `${this.apiBaseUrl}/${request.url}`
     });
+
+    if(bearerToken){
+      apiRequest = apiRequest.clone({
+        setHeaders: {
+          Authorization: `Bearer ${bearerToken}`
+        }
+      })
+    }
 
     const requestUrl = apiRequest.url;
 
