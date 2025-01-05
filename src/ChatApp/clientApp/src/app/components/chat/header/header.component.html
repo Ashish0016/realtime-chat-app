@@ -10,7 +10,7 @@
         <!-- Profile icon with name and dropdown -->
         <div class="relative" (click)="openDropDown()">
             <div class="flex flex-row items-center space-x-3 font-medium cursor-pointer">
-                <div class="font-medium">Welcome! {{loggedInUserDetails.name}}</div>
+                <div class="font-medium">Welcome! {{loggedInUserDetails ? loggedInUserDetails.name : ''}}</div>
                 <div>
                     <i class="fas fa-user text-blue-500 text-xl"></i>
                 </div>

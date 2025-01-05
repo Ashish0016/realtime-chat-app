@@ -9,5 +9,7 @@ namespace DataAccess.Entities
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
+        public ICollection<ConnectedUser>? ConnectionFromUser { get; set; }
+        public ICollection<ConnectedUser>? ConnectionToUser { get; set; }
     }
 }
