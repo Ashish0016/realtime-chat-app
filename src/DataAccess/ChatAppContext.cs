@@ -10,6 +10,7 @@ namespace DataAccess
         public ChatAppContext(DbContextOptions<ChatAppContext> options) : base(options) { }
 
         public DbSet<User> User { get; set; }
+        public DbSet<ConnectedUser> ConnectedUser { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -22,6 +23,8 @@ namespace DataAccess
             builder.Entity<IdentityUserLogin<string>>(entity => entity.ToTable(name: "UserLogins"));
             builder.Entity<IdentityRoleClaim<string>>(entity => entity.ToTable(name: "RoleClaims"));
             builder.Entity<IdentityUserToken<string>>(entity => entity.ToTable(name: "UserTokens"));
+
+            builder.ApplyConfigurationsFromAssembly(typeof(ChatAppContext).Assembly);
         }
     }
 }

@@ -1,7 +1,8 @@
 <div class="h-full flex flex-col w-full">
     <!-- Sidebar Header -->
-    <div class="p-3 sticky top-0 z-10 shadow-md">
+    <div class="flex flex-row gap-3 items-center p-3 sticky top-0 z-10 shadow-md">
         <input class="w-full border-2 rounded-lg p-2 text-gray-800" type="text" placeholder="Search...">
+        <div (click)="openAddConnectionDialog()"><i class="fas fa-plus font-extrabold text-blue-500 bg-slate-200 hover:cursor-pointer rounded-full p-3"></i></div>
     </div>
 
     <!-- Scrollable User List -->
@@ -10,17 +11,18 @@
             <li [ngClass]="{'active': user == selectedUser}"
                 (click)="setActiveUser(user)"
                 class="flex gap-3 items-center shadow-sm p-3 rounded-md hover:bg-gray-200 transition-colors cursor-pointer"
-                *ngFor="let user of users">
+                *ngFor="let user of chatContacts">
                 <!-- User Avatar Icon -->
                 <div class="text-xl text-blue-500">
-                    <i [ngClass]="user.avatar"></i>
+                    <i [ngClass]="user?.avatar"></i>
                 </div>
 
                 <!-- User Name -->
                 <div class="flex-1 text-gray-700">
-                    <p class="text-base font-medium truncate">{{ user.name }}</p>
+                    <p class="text-base font-medium truncate">{{ user?.name }}</p>
                 </div>
             </li>
+            <li *ngIf="!chatContacts" class="text-gray-700">No Connections are available</li>
         </ul>
     </div>
 </div>
