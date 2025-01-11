@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-connection',
@@ -15,7 +16,8 @@ export class AddConnectionComponent implements OnInit {
   public hasAnyUserSelection: boolean = false;
 
   constructor(private http: HttpClient,
-    private dialogRef: MatDialogRef<AddConnectionComponent>
+    private dialogRef: MatDialogRef<AddConnectionComponent>,
+    private toaster: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -51,5 +53,19 @@ export class AddConnectionComponent implements OnInit {
     });
 
     this.hasAnyUserSelection = this.dataSource.data.some((prop) => prop.checked);
+  }
+
+  createUserConnection() {
+    let selectedUsers: string[] = this.dataSource.data
+      .filter(prop => prop.checked)
+      .map(p => p.userId);
+
+    if(selectedUsers.length == 0) return;
+
+    this.http.post('api/connection/AddConnectionToUser', {connectedToUserIds : selectedUsers})
+      .subscribe((prop:any) => {
+        this.toaster.success("User are connected successfully!");
+        this.dialogRef.close();
+      });
   }
 }

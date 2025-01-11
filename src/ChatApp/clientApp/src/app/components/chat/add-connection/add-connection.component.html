@@ -46,5 +46,5 @@
 
 <div mat-dialog-actions class="flex-row justify-end items-center mt-4 mr-4">
   <button mat-raised-button mat-dialog-close color="warn" class="font-sans">Close</button>
-  <button mat-raised-button [disabled]="!hasAnyUserSelection" color="primary" class="font-sans">Make Connection</button>
+  <button mat-raised-button [disabled]="!hasAnyUserSelection" color="primary" class="font-sans" (click)="createUserConnection()">Make Connection</button>
 </div>
